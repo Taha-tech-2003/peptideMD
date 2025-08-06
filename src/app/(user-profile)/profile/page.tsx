@@ -82,22 +82,22 @@ export default function Profile() {
     [
       {
         label: "Saved Videos",
-        href: "/profileIcons/Saved-Videos",
+        href: "/Dashboard/videos?viewAll=saved",
         iconSrc: "/profileIcons/saved-videos.svg",
       },
       {
         label: "Saved Podcast",
-        href: "/profileIcons/Saved-Podcast",
+        href: "/Dashboard/podcast?viewAll=saved",
         iconSrc: "/profileIcons/saved-podcast.svg",
       },
       {
         label: "Saved Articles",
-        href: "/profileIcons/Saved-Articles",
+        href: "/Dashboard/case-studies?viewAll=saved",
         iconSrc: "/profileIcons/saved-articles.svg",
       },
       {
         label: "Saved Case Studies",
-        href: "/profileIcons/Saved-CaseStudies",
+        href: "/Dashboard/case-studies?viewAll=saved",
         iconSrc: "/profileIcons/saved-caseStudies.svg",
       },
     ],

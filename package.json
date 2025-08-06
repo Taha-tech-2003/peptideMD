@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "copy": "move .\\.next\\static .\\.next\\standalone && xcopy .\\public .\\.next\\standalone\\public /E /I /Y",
-    "cleanup": "rm -r node_modules",
-    "start": "NODE_ENV=production node server.js",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -16,21 +14,16 @@
     "@react-google-maps/api": "^2.20.7",
     "antd": "^5.26.4",
     "axios": "^1.10.0",
-    "build": "^0.1.4",
-    "copy": "^0.3.2",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
     "lucide-react": "^0.522.0",
     "next": "^15.4.4",
-    "npm": "^11.5.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
     "react-icons": "^5.5.0",
     "react-leaflet": "^5.0.0-rc.2",
     "react-markdown": "^10.1.0",
-    "run": "^1.5.0",
-    "sharp": "^0.34.3",
     "uuid": "^11.1.0"
   },
   "devDependencies": {

@@ -17,13 +17,17 @@ type VideoType = {
   recommended: boolean;
 };
 
+type VideoDetailClientProps = {
+  video: any;
+  page: string;
+  // ref?: string;
+};
+
 export default function VideoDetailClient({
   video,
   page,
-}: {
-  video: any;
-  page: string;
-}) {
+  // ref,
+}: VideoDetailClientProps) {
   const router = useRouter();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [archives, setArchives] = useState(true);
@@ -163,6 +167,3 @@ export default function VideoDetailClient({
     </div>
   );
 }
-
-
- 

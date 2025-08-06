@@ -1,34 +1,31 @@
-"use client";
+// app/Dashboard/videos/page.tsx (Server Component)
+
 import Image from "next/image";
 import Link from "next/link";
 import { videos } from "@/data/videos";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-import { Suspense } from "react";
+import { notFound } from "next/navigation";
+import BackButton from "../components/BackButton";
 
-// Outer component with Suspense boundary
-export default function Page() {
-  return (
-    <Suspense fallback={<div>Loading Videos...</div>}>
-      <VideoContent />
-    </Suspense>
-  );
-}
+type PageProps = {
+  searchParams?: Promise<{ [key: string]: string | undefined }>;
+};
 
-// Inner component Which is Videos List Main Page
-function VideoContent() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const fromViewAll = searchParams.get("viewAll");
+export default async function Page({ searchParams }: PageProps) {
+  const { viewAll = "" } = searchParams ? await searchParams : {};
+
+  // Dynamic title based on viewAll
+  let pageTitle = "Videos";
+  if (viewAll === "recommended") {
+    pageTitle = "Recommended Videos";
+  } else if (viewAll === "saved") {
+    pageTitle = "Saved Videos";
+  }
+
   return (
     <div className="p-4 md:py-10 bg-white max-w-[1128px] mx-auto">
       <div className="flex gap-4">
-        <div onClick={() => router.back()} className="cursor-pointer">
-          <img src="/Dashboard/videos/left-arrow.svg" alt="left-arrows" />
-        </div>
-        <h1 className="text-3xl font-semibold">
-          {fromViewAll === "true" ? "Recommended Videos" : "Videos"}
-        </h1>
+        <BackButton />
+        <h1 className="text-3xl font-semibold">{pageTitle}</h1>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-6">
@@ -42,7 +39,7 @@ function VideoContent() {
                 height={250}
                 className="w-full h-70 object-cover"
               />
-              {video.recommended && fromViewAll !== "true" && (
+              {video.recommended && viewAll !== "recommended" && (
                 <span className="absolute bottom-18 left-3 bg-[rgba(200,228,252,0.24)] rounded-xl text-xs font-medium text-white px-2 py-1">
                   Recommended
                 </span>
@@ -71,7 +68,8 @@ function VideoContent() {
           </Link>
         ))}
       </div>
-      {fromViewAll !== "true" && (
+
+      {pageTitle !== "Videos" && (
         <div className="flex justify-center mt-10">
           <button className="basis-[342px] h-[48px] bg-blue-100 text-[#224674] rounded-full text-base font-semibold hover:bg-blue-200 transition-all">
             Load more videos
