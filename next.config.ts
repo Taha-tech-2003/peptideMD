@@ -6,7 +6,6 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   output: 'standalone',
-  distDir: ".next",
   eslint: {
     ignoreDuringBuilds: true,
   },
